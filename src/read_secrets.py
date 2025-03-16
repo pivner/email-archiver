@@ -25,8 +25,11 @@ def create_secret(Unencrypted):
         break
     if using_preexisting:
         key = Fernet(file.readline())
+        file.close()
         return key.encrypt(Unencrypted)
     else:
+        file.close()
+        file = open("../secrets", "wb")
         salt = os.urandom(16)
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
@@ -34,7 +37,7 @@ def create_secret(Unencrypted):
             salt=salt,
             iterations=1_200_000)
         key = base64.urlsafe_b64encode(kdf.derive(Unencrypted))
-        file.write(key.decode("utf-8"))
+        file.write(key)
         key = Fernet(key)
     return key.encrypt(Unencrypted)
 
