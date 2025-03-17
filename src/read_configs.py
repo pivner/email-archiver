@@ -19,10 +19,12 @@ def write_configs():
             print("Error validating password")
     password = read_secrets.create_secret(password.encode("utf-8")).decode("utf-8")
     hostname = input("Enter your hostname:")
+    storage_directory= input("Enter the directory which the files should be stored:")
     configs = {
         "email": email,
         "password": password,
         "hostname": hostname,
+        "storage_directory": storage_directory,
         "lastarchived": 0
     }
     try:
