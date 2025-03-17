@@ -1,8 +1,6 @@
 
 
 def process_email(msg, dir):
-#    print(msg.date)
-#    print(msg.subject)
-#    print(msg.text)
-#    print(msg.html)
-    print(msg.from_)
+    file = open(f'{dir}/{msg.from_}:{msg.subject}:{msg.date}.txt', "x")
+    file.write(msg.text)
+    file.close()
