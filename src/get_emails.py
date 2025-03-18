@@ -11,7 +11,5 @@ def get_emails(email, password, hostname, return_dir):
     return emails
 
 if __name__=="__main__":
-    print("pending")
     login = read_configs.read_configs()
     mail = get_emails(login[0],read_secrets.read_secret(login[1]).decode("utf-8"),login[2],login[3])
-    print("completed")
