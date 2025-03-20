@@ -1,3 +1,3 @@
 
 
-def store_email(msg):
+#def store_email(msg):
