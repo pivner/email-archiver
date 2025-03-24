@@ -9,6 +9,7 @@ def create_secret(Unencrypted):
     while True:
         try:
             file = open("../secrets","x")
+            using_preexisting = False
             break
         except:
             while True:

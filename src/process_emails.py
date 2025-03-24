@@ -1,7 +1,3 @@
-from imap_tools import OR
-import os
-
-
 def process_email(msg, dir):
     for i in range(2):
         try:
