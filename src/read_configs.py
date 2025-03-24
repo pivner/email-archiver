@@ -2,6 +2,7 @@ import json
 import getpass
 import read_secrets
 import os
+import datetime
 
 def read_configs():
     with open("../configs.json") as file:
@@ -25,7 +26,7 @@ def write_configs():
         "password": password,
         "hostname": hostname,
         "storage_directory": storage_directory,
-        "lastarchived": 0
+        "lastarchived": datetime.date(1900,1,1).strftime("%s")
     }
     try:
         file = open("../configs.json", "x")
@@ -35,5 +36,15 @@ def write_configs():
     file.close()
     file = open("../configs.json", "w")
     json.dump(configs, file)
+    file.close()
+
+def write_today_config():
+    file = open("../configs.json", "r")
+    configs = [i for i in json.load(file).values()]
+    file.close()
+    configs[4] = datetime.date.today()
+    file = open("../configs.json", "w")
+    json.dump(configs, file)
+    file.close()
 if __name__=="__main__":
-    write_configs()
+    write_today_config()
